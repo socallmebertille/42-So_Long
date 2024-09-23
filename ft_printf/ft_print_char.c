@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_print_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/23 14:03:43 by saberton          #+#    #+#             */
-/*   Updated: 2024/09/23 18:53:47 by saberton         ###   ########.fr       */
+/*   Created: 2024/06/03 12:58:17 by saberton          #+#    #+#             */
+/*   Updated: 2024/06/06 11:58:34 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "ft_printf.h"
 
-# include "../minilibx-linux/mlx.h"
-# include "../libft/libft.h"
-# include "../ft_printf/ft_printf.h"
-# include <X11/Xlib.h>
-# include <X11/keysym.h>
-# include <fcntl.h>
-# include <stdbool.h>
-# include <stdio.h>
-# include <unistd.h>
+int	ft_putchar(char c)
+{
+	write(1, &c, 1);
+	return (1);
+}
 
-#endif
+int	ft_putstr(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (ft_putstr("(null)"));
+	while (str[i])
+		ft_putchar(str[i++]);
+	return (i);
+}

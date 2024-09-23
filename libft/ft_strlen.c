@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/23 14:03:43 by saberton          #+#    #+#             */
-/*   Updated: 2024/09/23 18:53:47 by saberton         ###   ########.fr       */
+/*   Created: 2024/05/20 13:33:54 by saberton          #+#    #+#             */
+/*   Updated: 2024/05/30 17:02:46 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include "../minilibx-linux/mlx.h"
-# include "../libft/libft.h"
-# include "../ft_printf/ft_printf.h"
-# include <X11/Xlib.h>
-# include <X11/keysym.h>
-# include <fcntl.h>
-# include <stdbool.h>
-# include <stdio.h>
-# include <unistd.h>
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
 
-#endif
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
+/*#include <string.h>
+#include <stdio.h>
+
+int	main(void)
+{
+	char	*str = "Hola que tal ?";
+
+	printf("%lu\n", ft_strlen(str));
+	printf("%lu\n", strlen(str));
+	return (0);
+}*/

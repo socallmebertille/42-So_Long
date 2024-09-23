@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/23 14:03:43 by saberton          #+#    #+#             */
-/*   Updated: 2024/09/23 18:53:47 by saberton         ###   ########.fr       */
+/*   Created: 2024/05/20 12:46:15 by saberton          #+#    #+#             */
+/*   Updated: 2024/05/31 12:57:48 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include "../minilibx-linux/mlx.h"
-# include "../libft/libft.h"
-# include "../ft_printf/ft_printf.h"
-# include <X11/Xlib.h>
-# include <X11/keysym.h>
-# include <fcntl.h>
-# include <stdbool.h>
-# include <stdio.h>
-# include <unistd.h>
+int	ft_toupper(int c)
+{
+	if (c >= 97 && c <= 122)
+		return (c - 32);
+	return (c);
+}
 
-#endif
+/*#include <ctype.h>
+#include <stdio.h>
+
+int	main()
+{
+	printf("%c\n%c", ft_toupper(-5), toupper(-5));
+}*/

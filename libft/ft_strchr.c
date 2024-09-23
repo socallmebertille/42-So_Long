@@ -1,26 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/23 14:03:43 by saberton          #+#    #+#             */
-/*   Updated: 2024/09/23 18:53:47 by saberton         ###   ########.fr       */
+/*   Created: 2024/05/20 13:42:23 by saberton          #+#    #+#             */
+/*   Updated: 2024/05/30 17:05:07 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include "../minilibx-linux/mlx.h"
-# include "../libft/libft.h"
-# include "../ft_printf/ft_printf.h"
-# include <X11/Xlib.h>
-# include <X11/keysym.h>
-# include <fcntl.h>
-# include <stdbool.h>
-# include <stdio.h>
-# include <unistd.h>
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s)
+	{
+		if (*s == (char)c)
+			return ((char *) s);
+		s++;
+	}
+	if ((char)c == '\0')
+		return ((char *)s);
+	return ((char *)0);
+}
 
-#endif
+/*#include <string.h>
+#include <stdio.h>
+
+int	main(void)
+{
+	char	*str = "teste";
+
+	printf("%s\n", ft_strchr(str, '\0'));
+	printf("%s\n", strchr(str, '\0'));
+	return (0);
+}*/

@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/23 14:03:43 by saberton          #+#    #+#             */
-/*   Updated: 2024/09/23 18:53:47 by saberton         ###   ########.fr       */
+/*   Created: 2024/09/23 15:11:38 by saberton          #+#    #+#             */
+/*   Updated: 2024/09/23 19:12:29 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "../includes/so_long.h"
 
-# include "../minilibx-linux/mlx.h"
-# include "../libft/libft.h"
-# include "../ft_printf/ft_printf.h"
-# include <X11/Xlib.h>
-# include <X11/keysym.h>
-# include <fcntl.h>
-# include <stdbool.h>
-# include <stdio.h>
-# include <unistd.h>
+int main(void)
+{
+	void	*mlx;
+	void	*mlx_win;
 
-#endif
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, 190, 140, "First window");
+	mlx_loop(mlx);
+}
