@@ -1,6 +1,6 @@
 NAME = so_long
 CC = cc
-FLAGS = -Wall -Wextra -Werror -MMD -g3
+FLAGS = -Wall -Wextra -Werror -g3
 
 L_MLX = -L./minilibx-linux -lmlx -L/usr/lib/X11 -lXext -lX11
 L_LIBFT = -L./libft -lft
@@ -8,7 +8,7 @@ L_FT_PRINTF = -L./ft_printf -lftprintf
 INCLUDES = -I./includes -I./minilibx-linux
 
 SRC_DIR = sources
-SRCS = $(SRC_DIR)/so_long.c
+SRCS =  $(SRC_DIR)/valid_map.c $(SRC_DIR)/so_long.c
 OBJ_DIR = objets
 OBJS = $(SRCS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
 
