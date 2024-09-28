@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "xlib.h": "c"
+        "xlib.h": "c",
+        "mlx.h": "c",
+        "so_long.h": "c"
     }
 }
