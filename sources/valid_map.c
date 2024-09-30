@@ -6,7 +6,7 @@
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 09:54:21 by saberton          #+#    #+#             */
-/*   Updated: 2024/09/28 18:57:50 by saberton         ###   ########.fr       */
+/*   Updated: 2024/09/30 12:24:02 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ static char	*get_map(int fd)
 
 static void	type_file(char *map)
 {
-	if (!ft_strnstr(map, ".ber", 4))
-		return (ft_printf("The type's map need to be in \".ber\"\n"), exit(EXIT_FAILURE));
+	if (ft_strncmp(map + (ft_strlen(map) - 4), ".ber", 4) != 0)
+		return (ft_printf("%s\n", map + (ft_strlen(map) - 4)), ft_printf("The type's map need to be in \".ber\"\n"), exit(EXIT_FAILURE));
 }
 
 int	valid_map(char *map, t_game *game)

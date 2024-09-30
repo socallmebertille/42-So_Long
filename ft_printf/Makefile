@@ -7,27 +7,28 @@ AR = ar rcs
 
 #Sources et Objects
 
-SRCS = ft_printf.c \
-		ft_print_char.c \
-		ft_putnbr_base.c
-
-OBJS = ${SRCS:.c=.o}
+SRC_DIR = sources
+SRCS =  $(wildcard $(SRC_DIR)/*.c)
+OBJ_DIR = objets
+OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
+HEADER = includes/ft_printf.h
 
 #Rules
 
-all: ${NAME}
+all: $(NAME)
 
-${NAME}: ${OBJS}
-	@${AR} ${NAME} ${OBJS}
+$(NAME): $(OBJS)
+	@$(AR) $(NAME) $(OBJS)
 
-.c.o:
-	@${CC} ${CFLAGS} -c $< -o $@
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER)
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(C_FLAGS) $(INCLUDES) -I./includes -c $< -o $@
 
 clean: 
-	@rm -rf ${OBJS} ${BONUS_OBJS}
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
-	@rm -rf ${NAME}
+	@rm -rf $(NAME)
 
 re: fclean all
 
