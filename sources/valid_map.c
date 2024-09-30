@@ -5,70 +5,111 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/24 09:54:21 by saberton          #+#    #+#             */
-/*   Updated: 2024/09/30 12:24:02 by saberton         ###   ########.fr       */
+/*   Created: 2024/09/30 15:55:21 by saberton          #+#    #+#             */
+/*   Updated: 2024/09/30 16:45:32 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static char	*get_map(int fd)
+static int  is_rectangular(char **map)
 {
-	char	*map_line;
-	char	*buffer;
-	char	*tmp;
-	int		read_bits;
+	size_t	i;
+	size_t	j;
+	size_t	len;
 
-	buffer = ft_calloc((10000 + 1), sizeof(char));
-	if (!buffer)
-		return (NULL);
-	read_bits = 1;
-	map_line = NULL;
-	map_line = ft_strdup("");
-	while (read_bits)
+	i = 0;
+	len = 0;
+	while (map[i])
 	{
-		read_bits = (read(fd, buffer, 10000));
-		if (read_bits == -1)
-			return (free(map_line), free(buffer), NULL);
-		buffer[read_bits] = '\0';
-		tmp = map_line;
-		map_line = ft_strjoin(map_line, buffer);
-		free(tmp);
+		j = 0;
+		while (map[i][j])
+			j++;
+		if (len == 0)
+			len = j;
+		else if (len != j)
+			return (0);
+		i++;
 	}
-	if (!map_line || !map_line[0])
-		return (free(map_line), free(buffer), NULL);
-	return (free(buffer), close(fd), map_line);
+	return (1);
 }
 
-static void	type_file(char *map)
+static int  wall_check(char **map)
 {
-	if (ft_strncmp(map + (ft_strlen(map) - 4), ".ber", 4) != 0)
-		return (ft_printf("%s\n", map + (ft_strlen(map) - 4)), ft_printf("The type's map need to be in \".ber\"\n"), exit(EXIT_FAILURE));
+	size_t	i;
+	size_t	j;
+	size_t	wall;
+
+	i = 0;
+	wall = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (i == 0 && map[i][j] != '1')
+				return (0);
+			if (!map[i + 1] && map[i][j] != '1')
+				return (0);
+			if ((j == 0 || j == ft_strlen(map[i]) - 1) && map[i][j] != '1')
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
 }
 
-int	valid_map(char *map, t_game *game)
+static int  nb_play_exit_coll(t_game *game)
 {
-	int		fd;
-	char	*map_line;
+	size_t	i;
+	size_t	j;
 
-	type_file(map);
-	fd = open(map, O_RDONLY);
-	if (fd == -1)
+	game->nb_player = 0;
+	game->nb_exit = 0;
+	game->nb_collectible = 0;
+	i = 0;
+	while (game->map[i])
 	{
-		ft_printf("The map doesn't exist.\n");
-		exit(EXIT_FAILURE);
+		j = 0;
+		while (game->map[i][j])
+		{
+			if (game->map[i][j] == 'P')
+				game->nb_player +=1;
+			if (game->map[i][j] == 'E')
+				game->nb_exit +=1;
+			if (game->map[i][j] == 'C')
+				game->nb_collectible +=1;
+			j++;
+		}
+		i++;
 	}
-	map_line = get_map(fd);
-	if (!map_line)
-		return (close(fd), ft_printf("There is an issue in the map.\n"),
-			exit(EXIT_FAILURE), 0); // ajt fct gestion err
-	if (ft_strnstr(map_line, "\n\n", ft_strlen(map_line)))
-		return (free(map_line), ft_printf("The map contain too much '\\n'.\n"),
-			exit(EXIT_FAILURE), 0);
-	game->check_map = ft_split(map_line, '\n');
-	game->map = ft_split(map_line, '\n');
-	if (!game->check_map || !game->map)
-		return (free(map_line), exit(EXIT_FAILURE), 0); //ajt fct erreur pr free
-	free(map_line);
-	return (0);
+	if (game->nb_player != 1 || game->nb_exit != 1 || game->nb_collectible < 1)
+		return (0);
+	return (1);
+}
+
+int valid_map(t_game *game)
+{
+	if (!is_rectangular(game->map))
+		return (ft_printf("The map isn't rectangular or line empty.\n"), 0);
+	if (!wall_check(game->map))
+		return (ft_printf("The map isn't surounded by walls or column empty.\n"), 0);
+	if (!nb_play_exit_coll(game))
+	{
+		if (game->nb_player == 0)
+			ft_printf("No player detected.\n");
+		if (game->nb_player > 1)
+			ft_printf("Too much player detected.\n");
+		if (game->nb_exit == 0)
+			ft_printf("No exit detected.\n");
+		if (game->nb_exit > 1)
+			ft_printf("Too much exit detected.\n");
+		if (game->nb_collectible < 1)
+			ft_printf("No collectible detected.\n");
+		return (0);
+	}
+	// if (!fool_fill_check(game))
+	// 	return (0);
+	return (1);
 }

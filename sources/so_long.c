@@ -6,7 +6,7 @@
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 15:11:38 by saberton          #+#    #+#             */
-/*   Updated: 2024/09/28 16:41:10 by saberton         ###   ########.fr       */
+/*   Updated: 2024/09/30 15:56:08 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	main(int ac, char **av)
 	game = (t_game *)malloc(sizeof(t_game));
 	if (!game)
 		return (1);
-	valid_map(av[1], game);
+	valid_file(av[1], game);
 	put_img_map(game);
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, 1920, 1080, "So_Long");
@@ -87,8 +87,6 @@ int	main(int ac, char **av)
 	// img->img = mlx_new_image(vars->mlx, 1920, 1080);
 	// img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 	// 		&img->line_length, &img->endian);
-	// img->mlx = vars->mlx;
-	// img->win = vars->win;
 	mlx_key_hook(game->win, key_hook, &game);
 	mlx_mouse_hook(game->win, mouse_hook, &game);
 	// mlx_loop_hook(vars->mlx, render_next_frame, img); rainbow screen

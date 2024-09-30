@@ -1,0 +1,10 @@
+./so_long maps/invalid/empty_col_1.ber
+./so_long maps/invalid/empty_line_1.ber
+./so_long maps/invalid/empty_line_2.ber
+./so_long maps/invalid/empty_line_3.ber
+./so_long maps/invalid/mult_exit.ber
+./so_long maps/invalid/mult_play.ber
+./so_long maps/invalid/no_coin.ber
+./so_long maps/invalid/no_exit.ber
+./so_long maps/invalid/no_play.ber
+./so_long maps/invalid/no_wall.ber
