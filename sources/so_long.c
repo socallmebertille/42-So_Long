@@ -6,7 +6,7 @@
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 15:11:38 by saberton          #+#    #+#             */
-/*   Updated: 2024/09/30 15:56:08 by saberton         ###   ########.fr       */
+/*   Updated: 2024/10/01 16:32:40 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int	main(int ac, char **av)
 	game = (t_game *)malloc(sizeof(t_game));
 	if (!game)
 		return (1);
+	ft_bzero(game, sizeof(t_game));
 	valid_file(av[1], game);
 	put_img_map(game);
 	game->mlx = mlx_init();
