@@ -40,8 +40,8 @@ right_out=(
     "No player detected."
     "The map isn't surounded by walls or column empty."
     ""
-    ""
-    ""
+    "We can't access exit."
+    "We can't access all collectibles."
     "The map isn't rectangular or line empty."
 )
 

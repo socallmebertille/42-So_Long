@@ -1,10 +1,10 @@
 NAME = so_long
 CC = cc
-C_FLAGS = -Wall -Wextra -Werror
+C_FLAGS = -Wall -Wextra -Werror -g3
 
 L_LIBFT = -L./libft -lft
 L_FT_PRINTF = -L./ft_printf -lftprintf
-L_MLX = -L./minilibx-linux -lmlx -L/usr/lib/X11 -lXext -lX11
+L_MLX = -L./minilibx-linux -lmlx -L/usr/lib/X11 -lXext -lX11 -Imlx -lm -lz -O3
 INCLUDES = -I./minilibx-linux
 
 SRC_DIR = sources

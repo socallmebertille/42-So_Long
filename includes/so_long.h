@@ -6,7 +6,7 @@
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:03:43 by saberton          #+#    #+#             */
-/*   Updated: 2024/10/01 14:42:36 by saberton         ###   ########.fr       */
+/*   Updated: 2024/10/02 19:39:47 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@
 # include <stdbool.h>
 # include <stdio.h>
 # include <unistd.h>
+
+# define ESC 65307
+# define NORTH 65362
+# define SOUTH 65364
+# define WEST 65361
+# define EST 65363
+# define NORTH_ 119
+# define SOUTH_ 115
+# define WEST_ 97
+# define EST_ 100
 
 typedef struct s_player
 {
@@ -43,6 +53,7 @@ typedef struct s_data
 	int			nb_exit;
 	int			nb_player;
 	int			nb_collectible;
+	int			press;
 	size_t		width;
 	size_t		height;
 	char		**map;
@@ -50,6 +61,7 @@ typedef struct s_data
 	t_player	player;
 }				t_game;
 
+void			put_img(t_game *game);
 void			put_img_map(t_game *game);
 int				valid_file(char *map, t_game *game);
 int				valid_map(t_game *game);

@@ -6,7 +6,7 @@
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 09:54:21 by saberton          #+#    #+#             */
-/*   Updated: 2024/09/30 16:53:56 by saberton         ###   ########.fr       */
+/*   Updated: 2024/10/02 16:38:00 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char	*get_map(int fd)
 	if (!buffer)
 		return (NULL);
 	read_bits = 1;
-	map_line = NULL;
+	// map_line = NULL;
 	map_line = ft_strdup("");
 	while (read_bits)
 	{
@@ -71,7 +71,7 @@ int	valid_file(char *map, t_game *game)
 	if (!game->check_map || !game->map)
 		return (free(map_line), exit(EXIT_FAILURE), 0);// ajt fct erreur pr free
 	if (!valid_map(game))
-        return (free(map_line), exit(EXIT_FAILURE), 0);// ajt fct erreur pr free
+		return (free(map_line), exit(EXIT_FAILURE), 0);// ajt fct erreur pr free
 	free(map_line);
 	return (0);
 }
