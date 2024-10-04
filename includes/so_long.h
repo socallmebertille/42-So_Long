@@ -6,7 +6,7 @@
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:03:43 by saberton          #+#    #+#             */
-/*   Updated: 2024/10/04 20:19:06 by saberton         ###   ########.fr       */
+/*   Updated: 2024/10/04 20:27:28 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@
 # define NO_EXIT "Error\nNo exit detected.\n"
 # define FEW_EXIT "Error\nToo much exit detected.\n"
 # define NO_COLL "Error\nNo collectible detected.\n"
+# define ACCESS_COLL "Error\nWe can't access all collectibles.\n"
+# define ACCESS_EXIT "Error\nWe can't access exit.\n"
 
 # define ESC 65307
 # define NORTH 65362
