@@ -6,7 +6,7 @@
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:03:43 by saberton          #+#    #+#             */
-/*   Updated: 2024/10/04 15:50:30 by saberton         ###   ########.fr       */
+/*   Updated: 2024/10/04 20:19:06 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,25 @@
 # include <stdbool.h>
 # include <stdio.h>
 # include <unistd.h>
+
+# define RESET "\e[0m"
+# define RED "\e[1;91m"
+# define GREEN "\e[1;92m"
+# define PURPLE "\033[1;35m"
+
+# define WRONG_NB_ARGS "Error\nYou have to choose a map as 2nd arg!\n"
+# define NO_MAP "Error\nThe map doesn't exist.\n"
+# define WRONG_TYPE "Error\nThe type's map need to be in \".ber\"\n"
+# define WRONG_READING "Error\nThere is an issue while reading the map.\n"
+# define FEW_NEW_LINE "Error\nThe map contain too much '\\n'.\n"
+# define WRONG_SHAPE "Error\nThe map isn't rectangular or line empty.\n"
+# define WRONG_WALLS "Error\nThe map isn't surounded by walls or column empty.\n"
+# define WRONG_CHAR "Error\nThe map contain at least 1 wrong character.\n"
+# define NO_PLAY "Error\nNo player detected.\n"
+# define FEW_PLAY "Error\nToo much player detected.\n"
+# define NO_EXIT "Error\nNo exit detected.\n"
+# define FEW_EXIT "Error\nToo much exit detected.\n"
+# define NO_COLL "Error\nNo collectible detected.\n"
 
 # define ESC 65307
 # define NORTH 65362

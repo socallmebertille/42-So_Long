@@ -6,7 +6,7 @@
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 15:11:38 by saberton          #+#    #+#             */
-/*   Updated: 2024/10/04 15:46:53 by saberton         ###   ########.fr       */
+/*   Updated: 2024/10/04 20:17:06 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	main(int ac, char **av)
 	t_game	*game;
 
 	if (ac != 2)
-		return (ft_printf("ERROR : You have to choose a map as 2nd arg!\n"), 0);
+		return (ft_printf(RED WRONG_NB_ARGS RESET), 0);
 	game = (t_game *)malloc(sizeof(t_game));
 	if (!game)
 		return (1);

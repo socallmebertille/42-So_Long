@@ -6,7 +6,7 @@
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 11:37:49 by saberton          #+#    #+#             */
-/*   Updated: 2024/10/04 15:53:31 by saberton         ###   ########.fr       */
+/*   Updated: 2024/10/04 20:23:06 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static int	can_exit(t_game *game, int y, int x)
 		return (1);
 	else if (game->map[y][x] == 'C')
 		game->nb_collectible -= 1;
-	// printf("elem [%c] nb coll : %d\n", game->map[y][x], game->nb_collectible);
 	return (0);
 }
 
@@ -38,8 +37,8 @@ void	move_north(t_game *game, int y, int x)
 		game->player.y -= 1;
 		put_img_map(game, 0, 0, 'N');
 		game->nb_move += 1;
-		// ft_printf("It's your %d move.\n", game->nb_move);
-		ft_printf("You win in %d moves, congratulations !!!\n", game->nb_move);
+		ft_printf(GREEN "You win in %d moves, congratulations !!!\n" RESET,
+			game->nb_move);
 		close_window(game);
 	}
 	game->map[y - 1][x] = 'P';
@@ -47,7 +46,7 @@ void	move_north(t_game *game, int y, int x)
 	game->player.y -= 1;
 	put_img_map(game, 0, 0, 'N');
 	game->nb_move += 1;
-	ft_printf("It's your %d move.\n", game->nb_move);
+	ft_printf(PURPLE "It's your %d move.\n" RESET, game->nb_move);
 	return ;
 }
 
@@ -65,8 +64,8 @@ void	move_south(t_game *game, int y, int x)
 		game->player.y += 1;
 		put_img_map(game, 0, 0, 'S');
 		game->nb_move += 1;
-		// ft_printf("It's your %d move.\n", game->nb_move);
-		ft_printf("You win in %d moves, congratulations !!!\n", game->nb_move);
+		ft_printf(GREEN "You win in %d moves, congratulations !!!\n" RESET,
+			game->nb_move);
 		close_window(game);
 	}
 	game->map[y + 1][x] = 'P';
@@ -74,7 +73,7 @@ void	move_south(t_game *game, int y, int x)
 	game->player.y += 1;
 	put_img_map(game, 0, 0, 'S');
 	game->nb_move += 1;
-	ft_printf("It's your %d move.\n", game->nb_move);
+	ft_printf(PURPLE "It's your %d move.\n" RESET, game->nb_move);
 	return ;
 }
 
@@ -92,8 +91,8 @@ void	move_west(t_game *game, int y, int x)
 		game->player.x -= 1;
 		put_img_map(game, 0, 0, 'W');
 		game->nb_move += 1;
-		// ft_printf("It's your %d move.\n", game->nb_move);
-		ft_printf("You win in %d moves, congratulations !!!\n", game->nb_move);
+		ft_printf(GREEN "You win in %d moves, congratulations !!!\n" RESET,
+			game->nb_move);
 		close_window(game);
 	}
 	game->map[y][x - 1] = 'P';
@@ -101,7 +100,7 @@ void	move_west(t_game *game, int y, int x)
 	game->player.x -= 1;
 	put_img_map(game, 0, 0, 'W');
 	game->nb_move += 1;
-	ft_printf("It's your %d move.\n", game->nb_move);
+	ft_printf(PURPLE "It's your %d move.\n" RESET, game->nb_move);
 	return ;
 }
 
@@ -119,8 +118,8 @@ void	move_est(t_game *game, int y, int x)
 		game->player.x += 1;
 		put_img_map(game, 0, 0, 'E');
 		game->nb_move += 1;
-		// ft_printf("It's your %d move.\n", game->nb_move);
-		ft_printf("You win in %d moves, congratulations !!!\n", game->nb_move);
+		ft_printf(GREEN "You win in %d moves, congratulations !!!\n" RESET,
+			game->nb_move);
 		close_window(game);
 	}
 	game->map[y][x + 1] = 'P';
@@ -128,6 +127,6 @@ void	move_est(t_game *game, int y, int x)
 	game->player.x += 1;
 	put_img_map(game, 0, 0, 'E');
 	game->nb_move += 1;
-	ft_printf("It's your %d move.\n", game->nb_move);
+	ft_printf(PURPLE "It's your %d move.\n" RESET, game->nb_move);
 	return ;
 }

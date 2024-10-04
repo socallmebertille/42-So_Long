@@ -6,7 +6,7 @@
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 09:54:21 by saberton          #+#    #+#             */
-/*   Updated: 2024/10/04 15:47:39 by saberton         ###   ########.fr       */
+/*   Updated: 2024/10/04 20:16:26 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,23 @@ static char	*get_map(int fd)
 	return (free(buffer), close(fd), map_line);
 }
 
-static void	type_file(char *map, t_game *game)
+static int	type_file(char *map, t_game *game)
 {
+	int	fd;
+
+	fd = open(map, O_RDONLY);
+	if (fd == -1)
+	{
+		ft_printf(RED NO_MAP RESET);
+		close_window(game);
+	}
 	if (ft_strncmp(map + (ft_strlen(map) - 4), ".ber", 4) != 0)
 	{
-		ft_printf("The type's map need to be in \".ber\"\n");
+		ft_printf(RED WRONG_TYPE RESET);
 		close_window(game);
-		return ;
+		return (1);
 	}
+	return (fd);
 }
 
 int	valid_file(char *map, t_game *game)
@@ -54,20 +63,14 @@ int	valid_file(char *map, t_game *game)
 	int		fd;
 	char	*map_line;
 
-	type_file(map, game);
-	fd = open(map, O_RDONLY);
-	if (fd == -1)
-	{
-		ft_printf("The map doesn't exist.\n");
-		close_window(game);
-	}
+	fd = type_file(map, game);
 	map_line = get_map(fd);
 	if (!map_line)
-		return (close(fd), ft_printf("There is an issue in the map.\n"),
+		return (close(fd), ft_printf(RED WRONG_READING RESET),
 			close_window(game), 0);
 	if (ft_strnstr(map_line, "\n\n", ft_strlen(map_line)) || map_line[0] == '\n'
 		|| map_line[ft_strlen(map_line) - 1] == '\n')
-		return (free(map_line), ft_printf("The map contain too much '\\n'.\n"),
+		return (free(map_line), ft_printf(RED FEW_NEW_LINE RESET),
 			close_window(game), 0);
 	game->check_map = ft_split(map_line, '\n');
 	game->map = ft_split(map_line, '\n');

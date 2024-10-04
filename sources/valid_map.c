@@ -6,7 +6,7 @@
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 15:55:21 by saberton          #+#    #+#             */
-/*   Updated: 2024/10/04 14:45:47 by saberton         ###   ########.fr       */
+/*   Updated: 2024/10/04 20:14:37 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,28 +93,24 @@ static int	nb_play_exit_coll(t_game *game)
 int	valid_map(t_game *game)
 {
 	if (!is_rectangular(game->map))
-		return (ft_printf("The map isn't rectangular or line empty.\n"), 0);
+		return (ft_printf(RED WRONG_SHAPE RESET), 0);
 	if (!wall_and_char_check(game->map))
-		return (ft_printf("The map isn't surounded by walls or column empty.\n"),
-			0);
+		return (ft_printf(RED WRONG_WALLS RESET), 0);
 	if (wall_and_char_check(game->map) == -1)
-		return (ft_printf("The map contain at least 1 wrong character.\n"),
-			0);
-	if (!nb_play_exit_coll(game))
+		return (ft_printf(RED WRONG_CHAR RESET), 0);
+	if (!nb_play_exit_coll(game) || !flood_fill_check(game))
 	{
 		if (game->nb_player == 0)
-			ft_printf("No player detected.\n");
+			ft_printf(RED NO_PLAY RESET);
 		if (game->nb_player > 1)
-			ft_printf("Too much player detected.\n");
+			ft_printf(RED FEW_PLAY RESET);
 		if (game->nb_exit == 0)
-			ft_printf("No exit detected.\n");
+			ft_printf(RED NO_EXIT RESET);
 		if (game->nb_exit > 1)
-			ft_printf("Too much exit detected.\n");
+			ft_printf(RED FEW_EXIT RESET);
 		if (game->nb_collectible < 1)
-			ft_printf("No collectible detected.\n");
+			ft_printf(RED NO_COLL RESET);
 		return (0);
 	}
-	if (!flood_fill_check(game))
-		return (0);
 	return (1);
 }

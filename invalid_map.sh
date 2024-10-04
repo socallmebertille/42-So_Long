@@ -24,25 +24,27 @@ commands=(
     "./so_long maps/invalid/not_access_coin.ber"
     "./so_long maps/invalid/not_rect_map.ber"
     "./so_long maps/invalid/coin_after_exit.ber"
+    "./so_long maps/invalid/folder.ber"
 )
 
 # Liste des outputs a avoir
 right_out=(
-    "The map contain at least 1 wrong character."
-    "The map contain at least 1 wrong character."
-    "The map contain too much '\\n'."
-    "The map contain too much '\\n'."
-    "The map contain too much '\\n'."
-    "Too much exit detected."
-    "Too much player detected."
-    "No collectible detected."
-    "No exit detected."
-    "No player detected."
-    "The map isn't surounded by walls or column empty."
-    "We can't access exit."
-    "We can't access all collectibles."
-    "The map isn't rectangular or line empty."
-    "We can't access all collectibles."
+    "Error\nThe map contain at least 1 wrong character."
+    "Error\nThe map contain at least 1 wrong character."
+    "Error\nThe map contain too much '\\n'."
+    "Error\nThe map contain too much '\\n'."
+    "Error\nThe map contain too much '\\n'."
+    "Error\nToo much exit detected."
+    "Error\nToo much player detected."
+    "Error\nNo collectible detected."
+    "Error\nNo exit detected."
+    "Error\nNo player detected."
+    "Error\nThe map isn't surounded by walls or column empty."
+    "Error\nWe can't access exit."
+    "Error\nWe can't access all collectibles."
+    "Error\nThe map isn't rectangular or line empty."
+    "Error\nWe can't access all collectibles."
+    "Error\nThere is an issue while reading the map."
 )
 
 # Comparaison des sorties pour une map invalide
@@ -54,15 +56,23 @@ for i in "${!commands[@]}"; do
 
     echo -e "${BLUE}($i)${NC}${YELLOW} Output of :${NC} $cmd ${YELLOW}\n>>>>>>>>>>> should be :${NC} $expected_output"
 
-    # Exécuter la commande et capturer sa sortie
+    # Exécuter la commande et capturer sa sortie dans une variable et un fichier
     output=$(eval "$cmd")
+    echo "$output" > out.txt
 
-    # Comparer la sortie avec la valeur attendue
-    if [[ "$output" == "$expected_output" ]]; then
+    # Remplacer les retours à la ligne réels par une représentation explicite '\n'
+    clean_output=$(echo "$output" | sed ':a;N;$!ba;s/\n/\\n/g')
+    clean_expected=$(echo "$expected_output" | sed ':a;N;$!ba;s/\n/\\n/g')
+
+    # Comparer les sorties nettoyées
+    if [[ "$clean_output" == "$clean_expected" ]]; then
         echo -e "${GREEN}======================> OK${NC}"
     else
         echo -e "${RED}======================> KO${NC}"
-        echo -e "${RED}Sortie obtenue :\n${NC}$output"
+        echo -e "${RED}Sortie obtenue :${NC} $output"
+        echo -e "${RED}Différences après normalisation :${NC}"
+        echo -e "$clean_output" | cat -e # Afficher avec des symboles pour les caractères invisibles
+        echo -e "$clean_expected" | cat -e # Afficher avec des symboles pour les caractères invisibles
     fi
     echo -e
 done
@@ -99,4 +109,4 @@ for i in "${!commands[@]}"; do
 done
 
 # Supprimer le fichier temporaire
-rm -f "$temp_file"
+rm -f "$temp_file" out.txt

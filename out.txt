@@ -1,0 +1,3 @@
+[1;91mError
+[0m[1;91mThere is an issue while reading the map.
+[0m

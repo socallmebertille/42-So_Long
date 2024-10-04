@@ -1,6 +1,8 @@
 NAME = so_long
+BONUS = so_long_bonus
+
 CC = cc
-C_FLAGS = -Wall -Wextra -Werror -g3
+C_FLAGS = -Wall -Wextra -Werror
 
 L_LIBFT = -L./libft -lft
 L_FT_PRINTF = -L./ft_printf -lftprintf
@@ -12,6 +14,14 @@ SRCS =  $(SRC_DIR)/access_map.c $(SRC_DIR)/moves.c $(SRC_DIR)/put_img.c \
 		$(SRC_DIR)/valid_file.c $(SRC_DIR)/valid_map.c $(SRC_DIR)/so_long.c
 OBJ_DIR = objets
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
+
+SRC_DIR_BON = bonus
+# SRCS_BON =  $(SRC_DIR_BON)/access_map.c $(SRC_DIR_BON)/moves.c \
+# 		$(SRC_DIR_BON)/put_img.c $(SRC_DIR_BON)/valid_file.c \
+# 		$(SRC_DIR_BON)/valid_map.c $(SRC_DIR_BON)/so_long.c
+OBJ_DIR_BON = objets_bonus
+OBJS_BON = $(patsubst $(SRC_DIR_BON)/%.c,$(OBJ_DIR_BON)/%.o,$(SRCS_BON))
+
 HEADER = includes/so_long.h
 LIBFT = libft/libft.a
 FT_PRINTF = ft_printf/libftprintf.a
@@ -45,6 +55,18 @@ $(FT_PRINTF): ft_printf/includes/ft_printf.h ft_printf/$(SRC_DIR)/*.c
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER)
 	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(C_FLAGS) $(INCLUDES) -I./includes -c $< -o $@ || (echo "\n$(RED) ============ $(ERROR) Compilation failed ! ================================== $(RESET)\n"; exit 1)
+	@echo "$(GREEN) ============ $(SUCCESS) Successful compilation ! ============================== $(RESET)"
+
+bonus: $(BONUS)
+
+$(BONUS): $(OBJS_BON) $(LIBFT) $(FT_PRINTF)
+	@make -C minilibx-linux --no-print-directory
+	@$(CC) $(OBJS_BON) -I./includes $(L_LIBFT) $(L_FT_PRINTF) $(L_MLX) -o $(BONUS) || (echo "\n$(RED) ============ $(ERROR) Linking failed ! ====================================== $(RESET)\n"; exit 1)
+	@echo "$(GREEN) ============ $(SUCCESS) Executable created ! ================================== $(RESET)"
+
+$(OBJ_DIR_BON)/%.o: $(SRC_DIR_BON)/%.c $(HEADER)
+	@mkdir -p $(OBJ_DIR_BON)
 	@$(CC) $(C_FLAGS) $(INCLUDES) -I./includes -c $< -o $@ || (echo "\n$(RED) ============ $(ERROR) Compilation failed ! ================================== $(RESET)\n"; exit 1)
 	@echo "$(GREEN) ============ $(SUCCESS) Successful compilation ! ============================== $(RESET)"
 

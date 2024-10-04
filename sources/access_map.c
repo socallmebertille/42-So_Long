@@ -6,7 +6,7 @@
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:14:05 by saberton          #+#    #+#             */
-/*   Updated: 2024/10/04 14:56:07 by saberton         ###   ########.fr       */
+/*   Updated: 2024/10/04 20:07:29 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int	flood_fill_check(t_game *game)
 	int	j;
 
 	if (!player_blocked(game, game->player.y, game->player.x))
-		return (ft_printf("We can't access all collectibles.\n"), 0);
+		return (ft_printf(RED "Error\nWe can't access all collectibles.\n" RESET),
+			0);
 	flood_fill(game->check_map, game->player);
 	i = 0;
 	while (game->check_map[i])
@@ -54,11 +55,13 @@ int	flood_fill_check(t_game *game)
 		while (game->check_map[i][j])
 		{
 			if (game->check_map[i][j] == 'E')
-				return (ft_printf("We can't access exit.\n"), 0);
+				return (ft_printf(RED "Error\nWe can't access exit.\n" RESET),
+					0);
 			if (game->check_map[i][j] == 'C' && game->check_map[i - 1][j] != 'S'
 				&& game->check_map[i + 1][j] != 'S' && game->check_map[i][j
 				- 1] != 'S' && game->check_map[i][j + 1] != 'S')
-				return (ft_printf("We can't access all collectibles.\n"), 0);
+				return (ft_printf(RED "Error\nWe can't access all collectibles.\n" RESET),
+					0);
 			j++;
 		}
 		i++;
