@@ -6,7 +6,7 @@
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:58:05 by saberton          #+#    #+#             */
-/*   Updated: 2024/10/01 14:49:29 by saberton         ###   ########.fr       */
+/*   Updated: 2024/10/04 15:02:59 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_bzero(void *s, size_t n)
 {
 	char	*z;
 
-	z = s;//(char *)s;
+	z = (char *)s;
 	while (n-- > 0)
 		*z++ = 0;
 }

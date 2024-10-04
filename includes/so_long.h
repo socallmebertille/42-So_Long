@@ -6,7 +6,7 @@
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:03:43 by saberton          #+#    #+#             */
-/*   Updated: 2024/10/02 19:39:47 by saberton         ###   ########.fr       */
+/*   Updated: 2024/10/04 15:50:30 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_data
 	int			nb_exit;
 	int			nb_player;
 	int			nb_collectible;
-	int			press;
+	int			nb_move;
 	size_t		width;
 	size_t		height;
 	char		**map;
@@ -62,9 +62,15 @@ typedef struct s_data
 }				t_game;
 
 void			put_img(t_game *game);
-void			put_img_map(t_game *game);
+void			put_perso_map(t_game *game, int y, int x, char dir);
+void			put_img_map(t_game *game, int y, int x, char dir);
+void			move_north(t_game *game, int y, int x);
+void			move_south(t_game *game, int y, int x);
+void			move_west(t_game *game, int y, int x);
+void			move_est(t_game *game, int y, int x);
 int				valid_file(char *map, t_game *game);
 int				valid_map(t_game *game);
 int				flood_fill_check(t_game *game);
+int				close_window(t_game *game);
 
 #endif

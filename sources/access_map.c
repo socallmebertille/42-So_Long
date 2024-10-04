@@ -6,7 +6,7 @@
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:14:05 by saberton          #+#    #+#             */
-/*   Updated: 2024/10/02 16:49:13 by saberton         ###   ########.fr       */
+/*   Updated: 2024/10/04 14:56:07 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,25 @@ static void	flood_fill(char **map, t_player cur)
 	flood_fill(map, (t_player){cur.x, cur.y + 1});
 }
 
+static int	player_blocked(t_game *game, int y, int x)
+{
+	if ((game->map[y - 1][x] == 'E' || game->map[y - 1][x] == '1')
+		&& (game->map[y + 1][x] == 'E' || game->map[y + 1][x] == '1')
+		&& (game->map[y][x - 1] == 'E' || game->map[y][x - 1] == '1')
+		&& (game->map[y][x + 1] == 'E' || game->map[y][x + 1] == '1')
+		&& game->nb_collectible > 0)
+		return (0);
+	return (1);
+}
+
 int	flood_fill_check(t_game *game)
 {
 	int	i;
 	int	j;
 
+	if (!player_blocked(game, game->player.y, game->player.x))
+		return (ft_printf("We can't access all collectibles.\n"), 0);
 	flood_fill(game->check_map, game->player);
-	// i = 0;
-	// while (game->check_map[i])
-	// {
-	// 	ft_printf("%s\n", game->check_map[i]);
-	// 	i++;
-	// }
 	i = 0;
 	while (game->check_map[i])
 	{
@@ -56,7 +63,5 @@ int	flood_fill_check(t_game *game)
 		}
 		i++;
 	}
-	// tq C > 0 -> E == 1
-	// tant qu'il rest des coin -> on considere E comme un mur
 	return (1);
 }

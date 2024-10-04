@@ -6,7 +6,7 @@
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 18:20:49 by saberton          #+#    #+#             */
-/*   Updated: 2024/10/02 19:06:18 by saberton         ###   ########.fr       */
+/*   Updated: 2024/10/04 15:47:05 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,36 +33,45 @@ void	put_img(t_game *game)
 	if (!game->img_collectible || !game->img_exit || !game->img_floor
 		|| !game->img_perso_front || !game->img_perso_left
 		|| !game->img_perso_right || !game->img_wall)
-		exit(EXIT_FAILURE); // had to add destroy fct
+		close_window(game);
 }
-void	put_img_map(t_game *game)
-{
-	int	i;
-	int	j;
 
-	i = 0;
-	while (game->map[i])
+void	put_perso_map(t_game *game, int y, int x, char dir)
+{
+	if (game->map[y][x] == 'P' && (dir == 'N' || dir == 'S'))
+		mlx_put_image_to_window(game->mlx, game->win, game->img_perso_front, x
+			* 48, y * 48);
+	else if (game->map[y][x] == 'P' && dir == 'W')
+		mlx_put_image_to_window(game->mlx, game->win, game->img_perso_left, x
+			* 48, y * 48);
+	else if (game->map[y][x] == 'P' && dir == 'E')
+		mlx_put_image_to_window(game->mlx, game->win, game->img_perso_right, x
+			* 48, y * 48);
+}
+
+void	put_img_map(t_game *game, int y, int x, char dir)
+{
+	while (game->map[y])
 	{
-		j = 0;
-		while (game->map[i][j])
+		x = 0;
+		while (game->map[y][x])
 		{
-			if (game->map[i][j] == '0')
-				mlx_put_image_to_window(game->mlx, game->win, game->img_floor, j
-					* 48, i * 48);
-			else if (game->map[i][j] == '1')
-				mlx_put_image_to_window(game->mlx, game->win, game->img_wall, j
-					* 48, i * 48);
-			else if (game->map[i][j] == 'C')
+			if (game->map[y][x] == '0')
+				mlx_put_image_to_window(game->mlx, game->win, game->img_floor, x
+					* 48, y * 48);
+			else if (game->map[y][x] == '1')
+				mlx_put_image_to_window(game->mlx, game->win, game->img_wall, x
+					* 48, y * 48);
+			else if (game->map[y][x] == 'C')
 				mlx_put_image_to_window(game->mlx, game->win,
-					game->img_collectible, j * 48, i * 48);
-			else if (game->map[i][j] == 'E')
-				mlx_put_image_to_window(game->mlx, game->win,
-					game->img_exit, j * 48, i * 48);
-			else if (game->map[i][j] == 'P')
-				mlx_put_image_to_window(game->mlx, game->win,
-					game->img_perso_right, j * 48, i * 48);
-			j++;
+					game->img_collectible, x * 48, y * 48);
+			else if (game->map[y][x] == 'E')
+				mlx_put_image_to_window(game->mlx, game->win, game->img_exit, x
+					* 48, y * 48);
+			else if (game->map[y][x] == 'P')
+				put_perso_map(game, y, x, dir);
+			x++;
 		}
-		i++;
+		y++;
 	}
 }

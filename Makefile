@@ -8,7 +8,8 @@ L_MLX = -L./minilibx-linux -lmlx -L/usr/lib/X11 -lXext -lX11 -Imlx -lm -lz -O3
 INCLUDES = -I./minilibx-linux
 
 SRC_DIR = sources
-SRCS =  $(wildcard $(SRC_DIR)/*.c)
+SRCS =  $(SRC_DIR)/access_map.c $(SRC_DIR)/moves.c $(SRC_DIR)/put_img.c \
+		$(SRC_DIR)/valid_file.c $(SRC_DIR)/valid_map.c $(SRC_DIR)/so_long.c
 OBJ_DIR = objets
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 HEADER = includes/so_long.h
