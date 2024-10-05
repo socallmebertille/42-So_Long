@@ -6,7 +6,7 @@
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:03:43 by saberton          #+#    #+#             */
-/*   Updated: 2024/10/04 20:27:28 by saberton         ###   ########.fr       */
+/*   Updated: 2024/10/05 17:57:14 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@
 # define ACCESS_COLL "Error\nWe can't access all collectibles.\n"
 # define ACCESS_EXIT "Error\nWe can't access exit.\n"
 
+# define NO_ENEMY "Error\nNo enemy detected.\n"
+
 # define ESC 65307
 # define NORTH 65362
 # define SOUTH 65364
@@ -67,13 +69,16 @@ typedef struct s_data
 	void		*img_collectible;
 	void		*img_exit;
 	void		*img_perso_front;
+	void		*img_perso_back;
 	void		*img_perso_left;
 	void		*img_perso_right;
+	void		*img_enemy;
 	void		*mlx;
 	void		*win;
 	int			nb_exit;
 	int			nb_player;
 	int			nb_collectible;
+	int			nb_enemy;
 	int			nb_move;
 	size_t		width;
 	size_t		height;
@@ -83,8 +88,8 @@ typedef struct s_data
 }				t_game;
 
 void			put_img(t_game *game);
-void			put_perso_map(t_game *game, int y, int x, char dir);
-void			put_img_map(t_game *game, int y, int x, char dir);
+void			put_perso_map(t_game *game, int y, int x);
+void			put_img_map(t_game *game, int y, int x);
 void			move_north(t_game *game, int y, int x);
 void			move_south(t_game *game, int y, int x);
 void			move_west(t_game *game, int y, int x);
@@ -93,5 +98,17 @@ int				valid_file(char *map, t_game *game);
 int				valid_map(t_game *game);
 int				flood_fill_check(t_game *game);
 int				close_window(t_game *game);
+
+void			put_img_bonus(t_game *game);
+void			put_perso_enemy_bonus(t_game *game, int y, int x, char dir);
+void			put_img_map_bonus(t_game *game, int y, int x, char dir);
+void			move_north_bonus(t_game *game, int y, int x);
+void			move_south_bonus(t_game *game, int y, int x);
+void			move_west_bonus(t_game *game, int y, int x);
+void			move_est_bonus(t_game *game, int y, int x);
+int				valid_file_bonus(char *map, t_game *game);
+int				valid_map_bonus(t_game *game);
+int				put_move(t_game *game);
+int				close_window_bonus(t_game *game);
 
 #endif

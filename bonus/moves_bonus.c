@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   moves.c                                            :+:      :+:    :+:   */
+/*   moves_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 11:37:49 by saberton          #+#    #+#             */
-/*   Updated: 2024/10/05 15:48:44 by saberton         ###   ########.fr       */
+/*   Updated: 2024/10/05 18:29:59 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 static int	can_exit(t_game *game, int y, int x)
 {
-	if (game->map[y][x] == 'E' && game->nb_collectible > 0)
+	if (game->map[y][x] == 'N')
+		return (ft_printf(RED "You lose by hurting an enemy !!!\n" RESET),
+			close_window_bonus(game), 0);
+	else if (game->map[y][x] == 'E' && game->nb_collectible > 0)
 		return (-1);
 	else if (game->map[y][x] == 'E' && game->nb_collectible == 0)
 		return (1);
@@ -23,7 +26,7 @@ static int	can_exit(t_game *game, int y, int x)
 	return (0);
 }
 
-void	move_north(t_game *game, int y, int x)
+void	move_north_bonus(t_game *game, int y, int x)
 {
 	int	finish;
 
@@ -35,22 +38,22 @@ void	move_north(t_game *game, int y, int x)
 		game->map[y - 1][x] = 'P';
 		game->map[y][x] = '0';
 		game->player.y -= 1;
-		put_img_map(game, 0, 0);
+		put_img_map_bonus(game, 0, 0, 'N');
 		game->nb_move += 1;
 		ft_printf(GREEN "You win in %d moves, congratulations !!!\n" RESET,
 			game->nb_move);
-		close_window(game);
+		close_window_bonus(game);
 	}
 	game->map[y - 1][x] = 'P';
 	game->map[y][x] = '0';
 	game->player.y -= 1;
-	put_img_map(game, 0, 0);
+	put_img_map_bonus(game, 0, 0, 'N');
 	game->nb_move += 1;
-	ft_printf(PURPLE "It's your %d move.\n" RESET, game->nb_move);
+	put_move(game);
 	return ;
 }
 
-void	move_south(t_game *game, int y, int x)
+void	move_south_bonus(t_game *game, int y, int x)
 {
 	int	finish;
 
@@ -62,22 +65,22 @@ void	move_south(t_game *game, int y, int x)
 		game->map[y + 1][x] = 'P';
 		game->map[game->player.y][game->player.x] = '0';
 		game->player.y += 1;
-		put_img_map(game, 0, 0);
+		put_img_map_bonus(game, 0, 0, 'S');
 		game->nb_move += 1;
 		ft_printf(GREEN "You win in %d moves, congratulations !!!\n" RESET,
 			game->nb_move);
-		close_window(game);
+		close_window_bonus(game);
 	}
 	game->map[y + 1][x] = 'P';
 	game->map[game->player.y][game->player.x] = '0';
 	game->player.y += 1;
-	put_img_map(game, 0, 0);
+	put_img_map_bonus(game, 0, 0, 'S');
 	game->nb_move += 1;
-	ft_printf(PURPLE "It's your %d move.\n" RESET, game->nb_move);
+	put_move(game);
 	return ;
 }
 
-void	move_west(t_game *game, int y, int x)
+void	move_west_bonus(t_game *game, int y, int x)
 {
 	int	finish;
 
@@ -89,22 +92,22 @@ void	move_west(t_game *game, int y, int x)
 		game->map[y][x - 1] = 'P';
 		game->map[y][x] = '0';
 		game->player.x -= 1;
-		put_img_map(game, 0, 0);
+		put_img_map_bonus(game, 0, 0, 'W');
 		game->nb_move += 1;
 		ft_printf(GREEN "You win in %d moves, congratulations !!!\n" RESET,
 			game->nb_move);
-		close_window(game);
+		close_window_bonus(game);
 	}
 	game->map[y][x - 1] = 'P';
 	game->map[y][x] = '0';
 	game->player.x -= 1;
-	put_img_map(game, 0, 0);
+	put_img_map_bonus(game, 0, 0, 'W');
 	game->nb_move += 1;
-	ft_printf(PURPLE "It's your %d move.\n" RESET, game->nb_move);
+	put_move(game);
 	return ;
 }
 
-void	move_est(t_game *game, int y, int x)
+void	move_est_bonus(t_game *game, int y, int x)
 {
 	int	finish;
 
@@ -116,17 +119,17 @@ void	move_est(t_game *game, int y, int x)
 		game->map[y][x + 1] = 'P';
 		game->map[y][x] = '0';
 		game->player.x += 1;
-		put_img_map(game, 0, 0);
+		put_img_map_bonus(game, 0, 0, 'E');
 		game->nb_move += 1;
 		ft_printf(GREEN "You win in %d moves, congratulations !!!\n" RESET,
 			game->nb_move);
-		close_window(game);
+		close_window_bonus(game);
 	}
 	game->map[y][x + 1] = 'P';
 	game->map[y][x] = '0';
 	game->player.x += 1;
-	put_img_map(game, 0, 0);
+	put_img_map_bonus(game, 0, 0, 'E');
 	game->nb_move += 1;
-	ft_printf(PURPLE "It's your %d move.\n" RESET, game->nb_move);
+	put_move(game);
 	return ;
 }

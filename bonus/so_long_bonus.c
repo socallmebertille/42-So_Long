@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   so_long_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 15:11:38 by saberton          #+#    #+#             */
-/*   Updated: 2024/10/05 15:47:44 by saberton         ###   ########.fr       */
+/*   Updated: 2024/10/05 17:56:50 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	free_tab(char **tab)
 		free(tab);
 }
 
-static void	clean_img(t_game *game)
+static void	clean_img_bonus(t_game *game)
 {
 	if (game->img_collectible)
 		mlx_destroy_image(game->mlx, game->img_collectible);
@@ -35,15 +35,23 @@ static void	clean_img(t_game *game)
 		mlx_destroy_image(game->mlx, game->img_floor);
 	if (game->img_perso_front)
 		mlx_destroy_image(game->mlx, game->img_perso_front);
+	if (game->img_perso_back)
+		mlx_destroy_image(game->mlx, game->img_perso_back);
+	if (game->img_perso_left)
+		mlx_destroy_image(game->mlx, game->img_perso_left);
+	if (game->img_perso_right)
+		mlx_destroy_image(game->mlx, game->img_perso_right);
+	if (game->img_enemy)
+		mlx_destroy_image(game->mlx, game->img_enemy);
 }
 
-int	close_window(t_game *game)
+int	close_window_bonus(t_game *game)
 {
 	if (game->map)
 		free_tab(game->map);
 	if (game->check_map)
 		free_tab(game->check_map);
-	clean_img(game);
+	clean_img_bonus(game);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)
@@ -59,15 +67,15 @@ int	close_window(t_game *game)
 static int	render_next_frame(int keycode, t_game *game)
 {
 	if (keycode == ESC)
-		close_window(game);
+		close_window_bonus(game);
 	else if (keycode == NORTH || keycode == NORTH_)
-		move_north(game, game->player.y, game->player.x);
+		move_north_bonus(game, game->player.y, game->player.x);
 	else if (keycode == SOUTH || keycode == SOUTH_)
-		move_south(game, game->player.y, game->player.x);
+		move_south_bonus(game, game->player.y, game->player.x);
 	else if (keycode == WEST || keycode == WEST_)
-		move_west(game, game->player.y, game->player.x);
+		move_west_bonus(game, game->player.y, game->player.x);
 	else if (keycode == EST || keycode == EST_)
-		move_est(game, game->player.y, game->player.x);
+		move_est_bonus(game, game->player.y, game->player.x);
 	return (0);
 }
 
@@ -81,16 +89,17 @@ int	main(int ac, char **av)
 	if (!game)
 		return (1);
 	ft_bzero(game, sizeof(t_game));
-	valid_file(av[1], game);
+	valid_file_bonus(av[1], game);
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, game->width * 48, game->height * 48,
-			"So_Long");
+			"So_Long_Bonus");
 	if (!game->win)
 		return (1);
-	put_img(game);
-	put_img_map(game, 0, 0);
+	put_img_bonus(game);
+	put_img_map_bonus(game, 0, 0, 'S');
 	mlx_key_hook(game->win, render_next_frame, game);
-	mlx_hook(game->win, 33, 0, close_window, game);
+	mlx_loop_hook(game->mlx, put_move, game);
+	mlx_hook(game->win, 33, 0, close_window_bonus, game);
 	mlx_loop(game->mlx);
 	return (0);
 }

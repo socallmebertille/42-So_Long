@@ -16,9 +16,10 @@ OBJ_DIR = objets
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 
 SRC_DIR_BON = bonus
-# SRCS_BON =  $(SRC_DIR_BON)/access_map.c $(SRC_DIR_BON)/moves.c \
-# 		$(SRC_DIR_BON)/put_img.c $(SRC_DIR_BON)/valid_file.c \
-# 		$(SRC_DIR_BON)/valid_map.c $(SRC_DIR_BON)/so_long.c
+SRCS_BON =  $(SRC_DIR_BON)/access_map_bonus.c $(SRC_DIR_BON)/moves_bonus.c \
+		$(SRC_DIR_BON)/put_img_bonus.c $(SRC_DIR_BON)/valid_file_bonus.c \
+		$(SRC_DIR_BON)/put_move_bonus.c $(SRC_DIR_BON)/valid_map_bonus.c \
+		$(SRC_DIR_BON)/so_long_bonus.c
 OBJ_DIR_BON = objets_bonus
 OBJS_BON = $(patsubst $(SRC_DIR_BON)/%.c,$(OBJ_DIR_BON)/%.o,$(SRCS_BON))
 
@@ -74,16 +75,16 @@ clean:
 	@make clean -C libft --no-print-directory
 	@make clean -C ft_printf --no-print-directory
 	@make clean -C minilibx-linux --no-print-directory
-	@rm -rf $(OBJ_DIR)
+	@rm -rf $(OBJ_DIR) $(OBJ_DIR_BON)
 	@echo "$(YELLOW) ============ $(CLEAN) Successful binary & dependances cleaning ! ============ $(RESET)"
 
 fclean: clean
 	@make fclean -C libft --no-print-directory
 	@make fclean -C ft_printf --no-print-directory
-	@rm -rf $(NAME)
+	@rm -rf $(NAME) $(BONUS)
 	@echo "$(BOLD)$(ORANGE) ============ $(REMOVE) Deleted executable ! ================================== $(RESET)"
 
 re: fclean all
 	@echo "$(PURPLE) ============ $(REDO) Redo completed ! ====================================== $(RESET)"
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
