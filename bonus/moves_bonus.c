@@ -6,11 +6,11 @@
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 11:37:49 by saberton          #+#    #+#             */
-/*   Updated: 2024/10/05 18:29:59 by saberton         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:33:05 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 static int	can_exit(t_game *game, int y, int x)
 {

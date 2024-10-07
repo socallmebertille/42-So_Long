@@ -2,7 +2,7 @@ NAME = so_long
 BONUS = so_long_bonus
 
 CC = cc
-C_FLAGS = -Wall -Wextra -Werror
+C_FLAGS = -Wall -Wextra -Werror -g3
 
 L_LIBFT = -L./libft -lft
 L_FT_PRINTF = -L./ft_printf -lftprintf

@@ -6,11 +6,11 @@
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 15:11:38 by saberton          #+#    #+#             */
-/*   Updated: 2024/10/05 17:56:50 by saberton         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:14:18 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 static void	free_tab(char **tab)
 {
@@ -21,18 +21,21 @@ static void	free_tab(char **tab)
 		free(tab[i++]);
 	if (tab)
 		free(tab);
+	tab = NULL;
 }
 
 static void	clean_img_bonus(t_game *game)
 {
+	if (game->img_floor)
+		mlx_destroy_image(game->mlx, game->img_floor);
+	if (game->img_wall)
+		mlx_destroy_image(game->mlx, game->img_wall);
 	if (game->img_collectible)
 		mlx_destroy_image(game->mlx, game->img_collectible);
 	if (game->img_exit)
 		mlx_destroy_image(game->mlx, game->img_exit);
-	if (game->img_wall)
-		mlx_destroy_image(game->mlx, game->img_wall);
-	if (game->img_floor)
-		mlx_destroy_image(game->mlx, game->img_floor);
+	if (game->img_exit_open)
+		mlx_destroy_image(game->mlx, game->img_exit_open);
 	if (game->img_perso_front)
 		mlx_destroy_image(game->mlx, game->img_perso_front);
 	if (game->img_perso_back)
@@ -43,6 +46,8 @@ static void	clean_img_bonus(t_game *game)
 		mlx_destroy_image(game->mlx, game->img_perso_right);
 	if (game->img_enemy)
 		mlx_destroy_image(game->mlx, game->img_enemy);
+	if (game->img_score)
+		mlx_destroy_image(game->mlx, game->img_score);
 }
 
 int	close_window_bonus(t_game *game)
@@ -58,9 +63,11 @@ int	close_window_bonus(t_game *game)
 	{
 		mlx_destroy_display(game->mlx);
 		free(game->mlx);
+		game->mlx = NULL;
 	}
 	if (game)
 		free(game);
+	game = NULL;
 	exit(0);
 }
 
@@ -90,6 +97,7 @@ int	main(int ac, char **av)
 		return (1);
 	ft_bzero(game, sizeof(t_game));
 	valid_file_bonus(av[1], game);
+	game->total_coll = game->nb_collectible;
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, game->width * 48, game->height * 48,
 			"So_Long_Bonus");

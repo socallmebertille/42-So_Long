@@ -6,11 +6,11 @@
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:14:05 by saberton          #+#    #+#             */
-/*   Updated: 2024/10/05 15:24:23 by saberton         ###   ########.fr       */
+/*   Updated: 2024/10/07 12:54:45 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 static void	flood_fill(char **map, t_player cur)
 {

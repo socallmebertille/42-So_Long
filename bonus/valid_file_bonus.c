@@ -6,11 +6,11 @@
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 09:54:21 by saberton          #+#    #+#             */
-/*   Updated: 2024/10/05 17:43:05 by saberton         ###   ########.fr       */
+/*   Updated: 2024/10/07 12:54:33 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 static char	*get_map(int fd)
 {

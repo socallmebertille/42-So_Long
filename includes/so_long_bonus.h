@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:03:43 by saberton          #+#    #+#             */
-/*   Updated: 2024/10/07 12:57:50 by saberton         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:35:24 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include "../ft_printf/includes/ft_printf.h"
 # include "../libft/includes/libft.h"
@@ -43,6 +43,7 @@
 # define NO_COLL "Error\nNo collectible detected.\n"
 # define ACCESS_COLL "Error\nWe can't access all collectibles.\n"
 # define ACCESS_EXIT "Error\nWe can't access exit.\n"
+# define NO_ENEMY "Error\nNo enemy detected.\n"
 
 # define ESC 65307
 # define NORTH 65362
@@ -66,13 +67,21 @@ typedef struct s_data
 	void		*img_wall;
 	void		*img_collectible;
 	void		*img_exit;
+	void		*img_exit_open;
 	void		*img_perso_front;
+	void		*img_perso_back;
+	void		*img_perso_left;
+	void		*img_perso_right;
+	void		*img_enemy;
+	void		*img_score;
 	void		*mlx;
 	void		*win;
 	int			nb_exit;
 	int			nb_player;
 	int			nb_collectible;
+	int			nb_enemy;
 	int			nb_move;
+	int			total_coll;
 	size_t		width;
 	size_t		height;
 	char		**map;
@@ -80,16 +89,18 @@ typedef struct s_data
 	t_player	player;
 }				t_game;
 
-void			put_img(t_game *game);
-void			put_perso_map(t_game *game, int y, int x);
-void			put_img_map(t_game *game, int y, int x);
-void			move_north(t_game *game, int y, int x);
-void			move_south(t_game *game, int y, int x);
-void			move_west(t_game *game, int y, int x);
-void			move_est(t_game *game, int y, int x);
-int				valid_file(char *map, t_game *game);
-int				valid_map(t_game *game);
+void			put_img_perso(t_game *game);
+void			put_img_bonus(t_game *game);
+void			put_p_n_e_bonus(t_game *game, int y, int x, char dir);
+void			put_img_map_bonus(t_game *game, int y, int x, char dir);
+void			move_north_bonus(t_game *game, int y, int x);
+void			move_south_bonus(t_game *game, int y, int x);
+void			move_west_bonus(t_game *game, int y, int x);
+void			move_est_bonus(t_game *game, int y, int x);
+int				valid_file_bonus(char *map, t_game *game);
+int				valid_map_bonus(t_game *game);
 int				flood_fill_check(t_game *game);
-int				close_window(t_game *game);
+int				put_move(t_game *game);
+int				close_window_bonus(t_game *game);
 
 #endif
