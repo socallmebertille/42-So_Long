@@ -6,7 +6,7 @@
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 11:37:49 by saberton          #+#    #+#             */
-/*   Updated: 2024/10/05 15:48:44 by saberton         ###   ########.fr       */
+/*   Updated: 2024/10/07 16:59:54 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ void	move_north(t_game *game, int y, int x)
 		game->player.y -= 1;
 		put_img_map(game, 0, 0);
 		game->nb_move += 1;
-		ft_printf(GREEN "You win in %d moves, congratulations !!!\n" RESET,
-			game->nb_move);
+		ft_printf(GREEN V_1 V_2 V_3 V_4 V_5 V_6 V_7 V_8 RESET);
 		close_window(game);
 	}
 	game->map[y - 1][x] = 'P';
@@ -64,8 +63,7 @@ void	move_south(t_game *game, int y, int x)
 		game->player.y += 1;
 		put_img_map(game, 0, 0);
 		game->nb_move += 1;
-		ft_printf(GREEN "You win in %d moves, congratulations !!!\n" RESET,
-			game->nb_move);
+		ft_printf(GREEN V_1 V_2 V_3 V_4 V_5 V_6 V_7 V_8 RESET);
 		close_window(game);
 	}
 	game->map[y + 1][x] = 'P';
@@ -91,8 +89,7 @@ void	move_west(t_game *game, int y, int x)
 		game->player.x -= 1;
 		put_img_map(game, 0, 0);
 		game->nb_move += 1;
-		ft_printf(GREEN "You win in %d moves, congratulations !!!\n" RESET,
-			game->nb_move);
+		ft_printf(GREEN V_1 V_2 V_3 V_4 V_5 V_6 V_7 V_8 RESET);
 		close_window(game);
 	}
 	game->map[y][x - 1] = 'P';
@@ -118,8 +115,7 @@ void	move_est(t_game *game, int y, int x)
 		game->player.x += 1;
 		put_img_map(game, 0, 0);
 		game->nb_move += 1;
-		ft_printf(GREEN "You win in %d moves, congratulations !!!\n" RESET,
-			game->nb_move);
+		ft_printf(GREEN V_1 V_2 V_3 V_4 V_5 V_6 V_7 V_8 RESET);
 		close_window(game);
 	}
 	game->map[y][x + 1] = 'P';

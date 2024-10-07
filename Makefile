@@ -24,6 +24,7 @@ OBJ_DIR_BON = objets_bonus
 OBJS_BON = $(patsubst $(SRC_DIR_BON)/%.c,$(OBJ_DIR_BON)/%.o,$(SRCS_BON))
 
 HEADER = includes/so_long.h
+HEADER_BON = includes/so_long_bonus.h
 LIBFT = libft/libft.a
 FT_PRINTF = ft_printf/libftprintf.a
 
@@ -66,7 +67,7 @@ $(BONUS): $(OBJS_BON) $(LIBFT) $(FT_PRINTF)
 	@$(CC) $(OBJS_BON) -I./includes $(L_LIBFT) $(L_FT_PRINTF) $(L_MLX) -o $(BONUS) || (echo "\n$(RED) ============ $(ERROR) Linking failed ! ====================================== $(RESET)\n"; exit 1)
 	@echo "$(GREEN) ============ $(SUCCESS) Executable created ! ================================== $(RESET)"
 
-$(OBJ_DIR_BON)/%.o: $(SRC_DIR_BON)/%.c $(HEADER)
+$(OBJ_DIR_BON)/%.o: $(SRC_DIR_BON)/%.c $(HEADER_BON)
 	@mkdir -p $(OBJ_DIR_BON)
 	@$(CC) $(C_FLAGS) $(INCLUDES) -I./includes -c $< -o $@ || (echo "\n$(RED) ============ $(ERROR) Compilation failed ! ================================== $(RESET)\n"; exit 1)
 	@echo "$(GREEN) ============ $(SUCCESS) Successful compilation ! ============================== $(RESET)"

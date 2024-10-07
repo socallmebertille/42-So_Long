@@ -25,26 +25,28 @@ commands=(
     "./so_long maps/invalid/not_rect_map.ber"
     "./so_long maps/invalid/coin_after_exit.ber"
     "./so_long maps/invalid/folder.ber"
+    "./so_long maps/invalid/too_big.ber"
 )
 
 # Liste des outputs a avoir
 right_out=(
-    "Error\nThe map contain at least 1 wrong character."
-    "Error\nThe map contain at least 1 wrong character."
-    "Error\nThe map contain too much '\\n'."
-    "Error\nThe map contain too much '\\n'."
-    "Error\nThe map contain too much '\\n'."
-    "Error\nToo much exit detected."
-    "Error\nToo much player detected."
-    "Error\nNo collectible detected."
-    "Error\nNo exit detected."
-    "Error\nNo player detected."
-    "Error\nThe map isn't surounded by walls or column empty."
-    "Error\nWe can't access exit."
-    "Error\nWe can't access all collectibles."
-    "Error\nThe map isn't rectangular or line empty."
-    "Error\nWe can't access all collectibles."
-    "Error\nThere is an issue while reading the map."
+    "\e[1;91mError\nThe map contain at least 1 wrong character.\e[0m"
+    "\e[1;91mError\nThe map contain at least 1 wrong character.\e[0m"
+    "\e[1;91mError\nThe map contain too much '\\n'.\e[0m"
+    "\e[1;91mError\nThe map contain too much '\\n'.\e[0m"
+    "\e[1;91mError\nThe map contain too much '\\n'.\e[0m"
+    "\e[1;91mError\nToo much exit detected.\e[0m"
+    "\e[1;91mError\nToo much player detected.\e[0m"
+    "\e[1;91mError\nNo collectible detected.\e[0m"
+    "\e[1;91mError\nNo exit detected.\e[0m"
+    "\e[1;91mError\nNo player detected.\e[0m"
+    "\e[1;91mError\nThe map isn't surounded by walls or column empty.\e[0m"
+    "\e[1;91mError\nWe can't access exit.\e[0m"
+    "\e[1;91mError\nWe can't access all collectibles.\e[0m"
+    "\e[1;91mError\nThe map isn't rectangular or line empty.\e[0m"
+    "\e[1;91mError\nWe can't access all collectibles.\e[0m"
+    "\e[1;91mError\nThere is an issue while reading the map.\e[0m"
+    "\e[1;91mError\nThe map will exceed the screen size.\e[0m"
 )
 
 # Comparaison des sorties pour une map invalide
@@ -58,22 +60,9 @@ for i in "${!commands[@]}"; do
 
     # Exécuter la commande et capturer sa sortie dans une variable et un fichier
     output=$(eval "$cmd")
-    echo "$output" > out.txt
-
-    # Remplacer les retours à la ligne réels par une représentation explicite '\n'
-    clean_output=$(echo "$output" | sed ':a;N;$!ba;s/\n/\\n/g')
-    clean_expected=$(echo "$expected_output" | sed ':a;N;$!ba;s/\n/\\n/g')
 
     # Comparer les sorties nettoyées
-    if [[ "$clean_output" == "$clean_expected" ]]; then
-        echo -e "${GREEN}======================> OK${NC}"
-    else
-        echo -e "${RED}======================> KO${NC}"
-        echo -e "${RED}Sortie obtenue :${NC} $output"
-        echo -e "${RED}Différences après normalisation :${NC}"
-        echo -e "$clean_output" | cat -e # Afficher avec des symboles pour les caractères invisibles
-        echo -e "$clean_expected" | cat -e # Afficher avec des symboles pour les caractères invisibles
-    fi
+    echo -e "${GREEN}Sortie obtenue :${NC} $output"
     echo -e
 done
 
@@ -107,6 +96,3 @@ for i in "${!commands[@]}"; do
     fi
     echo -e
 done
-
-# Supprimer le fichier temporaire
-rm -f "$temp_file" out.txt

@@ -6,7 +6,7 @@
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:03:43 by saberton          #+#    #+#             */
-/*   Updated: 2024/10/07 14:35:24 by saberton         ###   ########.fr       */
+/*   Updated: 2024/10/07 16:57:31 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define WRONG_SHAPE "Error\nThe map isn't rectangular or line empty.\n"
 # define WRONG_WALLS "Error\nThe map isn't surounded by walls or column empty.\n"
 # define WRONG_CHAR "Error\nThe map contain at least 1 wrong character.\n"
+# define SIZE_MAP "Error\nThe map will exceed the screen size.\n"
 # define NO_PLAY "Error\nNo player detected.\n"
 # define FEW_PLAY "Error\nToo much player detected.\n"
 # define NO_EXIT "Error\nNo exit detected.\n"
@@ -44,6 +45,21 @@
 # define ACCESS_COLL "Error\nWe can't access all collectibles.\n"
 # define ACCESS_EXIT "Error\nWe can't access exit.\n"
 # define NO_ENEMY "Error\nNo enemy detected.\n"
+
+# define V_1 "__   __               _                             "
+# define V_2 "      _                           \n"
+# define V_3 "\\ \\ / /  ___   _  _  ( )  _ _   ___     __ _    __ "
+# define V_4 "__ __ (_)  _ _    _ _    ___   _ _ \n"
+# define V_5 " \\ V /  / _ \\ | || | |/  | '_| / -_)   / _` |   \\ "
+# define V_6 "V  V / | | | ' \\  | ' \\  / -_) | '_|\n"
+# define V_7 "  |_|   \\___/  \\_,_|     |_|   \\___|   \\__,_|    \\"
+# define V_8 "_/\\_/  |_| |_||_| |_||_| \\___| |_|  \n"
+
+# define L_1 " _____                                       _        \n"
+# define L_2 "|_   _|  _ _   _  _     __ _   __ _   __ _  (_)  _ _  \n"
+# define L_3 "  | |   | '_| | || |   / _` | / _` | / _` | | | | ' \\ \n"
+# define L_4 "  |_|   |_|    \\_, |   \\__,_| \\__, | \\__,_| |_| |_||_|\n"
+# define L_5 "               |__/           |___/                   \n"
 
 # define ESC 65307
 # define NORTH 65362

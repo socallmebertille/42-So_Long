@@ -6,7 +6,7 @@
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 15:55:21 by saberton          #+#    #+#             */
-/*   Updated: 2024/10/04 20:14:37 by saberton         ###   ########.fr       */
+/*   Updated: 2024/10/07 16:00:16 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,7 @@ int	valid_map(t_game *game)
 			ft_printf(RED NO_COLL RESET);
 		return (0);
 	}
+	if (game->width > 40 || game->height > 22)
+		return (ft_printf(RED SIZE_MAP RESET), 0);
 	return (1);
 }

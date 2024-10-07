@@ -6,7 +6,7 @@
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 15:11:38 by saberton          #+#    #+#             */
-/*   Updated: 2024/10/05 15:47:44 by saberton         ###   ########.fr       */
+/*   Updated: 2024/10/07 16:08:10 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static void	clean_img(t_game *game)
 		mlx_destroy_image(game->mlx, game->img_collectible);
 	if (game->img_exit)
 		mlx_destroy_image(game->mlx, game->img_exit);
+	if (game->img_exit_open)
+		mlx_destroy_image(game->mlx, game->img_exit_open);
 	if (game->img_wall)
 		mlx_destroy_image(game->mlx, game->img_wall);
 	if (game->img_floor)
