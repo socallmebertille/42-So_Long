@@ -6,7 +6,7 @@
 /*   By: saberton <saberton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:14:05 by saberton          #+#    #+#             */
-/*   Updated: 2024/10/07 12:54:45 by saberton         ###   ########.fr       */
+/*   Updated: 2024/10/08 16:00:27 by saberton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static void	flood_fill(char **map, t_player cur)
 		map[cur.y][cur.x] = 'S';
 		return ;
 	}
-	if (map[cur.y][cur.x] == '1' || map[cur.y][cur.x] == 'S')
+	if (map[cur.y][cur.x] == '1' || map[cur.y][cur.x] == 'S' \
+	|| map[cur.y][cur.x] == 'N')
 		return ;
 	map[cur.y][cur.x] = 'S';
 	flood_fill(map, (t_player){cur.x - 1, cur.y});
@@ -30,10 +31,14 @@ static void	flood_fill(char **map, t_player cur)
 
 static int	player_blocked(t_game *game, int y, int x)
 {
-	if ((game->map[y - 1][x] == 'E' || game->map[y - 1][x] == '1')
-		&& (game->map[y + 1][x] == 'E' || game->map[y + 1][x] == '1')
-		&& (game->map[y][x - 1] == 'E' || game->map[y][x - 1] == '1')
-		&& (game->map[y][x + 1] == 'E' || game->map[y][x + 1] == '1')
+	if ((game->map[y - 1][x] == 'E' || game->map[y - 1][x] == '1' \
+	|| game->map[y - 1][x] == 'N')
+		&& (game->map[y + 1][x] == 'E' || game->map[y + 1][x] == '1' \
+		|| game->map[y + 1][x] == 'N')
+		&& (game->map[y][x - 1] == 'E' || game->map[y][x - 1] == '1' \
+		|| game->map[y][x - 1] == 'N')
+		&& (game->map[y][x + 1] == 'E' || game->map[y][x + 1] == '1' \
+		|| game->map[y][x + 1] == 'N')
 		&& game->nb_collectible > 0)
 		return (0);
 	return (1);
