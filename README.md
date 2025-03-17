@@ -3,7 +3,7 @@ And thanks for all the fish!
 
 ## Check my demo
 
-[![Vidéo YouTube](https://img.youtube.com/vi/XLiG6d9VJvI/0.jpg)](https://youtu.be/XLiG6d9)
+[![Vidéo YouTube](https://img.youtube.com/vi/XLiG6d9VJvI/0.jpg)](https://youtu.be/XLiG6d9VJvI?si=xbASQeZyXW-T3CCb)
 
 ## Step 1 : how to start the project
 
