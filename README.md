@@ -3,7 +3,9 @@ And thanks for all the fish!
 
 ## Check my demo
 
-[![Vidéo YouTube](https://img.youtube.com/vi/XLiG6d9VJvI/0.jpg)](https://youtu.be/XLiG6d9VJvI?si=xbASQeZyXW-T3CCb)
+<p align="center">
+  <img src="so_long_bonus.gif" alt="my demo" width="1000">
+</p>
 
 ## Step 1 : how to start the project
 
