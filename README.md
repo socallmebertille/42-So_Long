@@ -3,6 +3,8 @@ And thanks for all the fish!
 
 ## Check my demo
 
+[![Watch me on YouTube](https://img.shields.io/badge/Watch_me_on_YouTube-ff0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/XLiG6d9VJvI?si=CMYbCpsLkb29LYys)
+
 <p align="center">
   <img src="so_long_bonus.gif" alt="my demo" width="1000">
 </p>
